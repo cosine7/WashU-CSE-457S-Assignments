@@ -20,5 +20,7 @@ module.exports = {
   ],
   rules: {
     'import/no-extraneous-dependencies': 'off',
+    'arrow-parens': ['error', 'as-needed'],
+    'no-param-reassign': 'off',
   },
 };
