@@ -22,5 +22,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'no-param-reassign': 'off',
+    'prefer-destructuring': ['error', { object: true, array: false }],
+    'no-confusing-arrow': 'off',
   },
 };
