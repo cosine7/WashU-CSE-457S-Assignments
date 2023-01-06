@@ -29,7 +29,7 @@ const converter = d => {
   state.group = votes[0][0];
   state.party = votes[0][2];
   state.victory = state.party === 'I' ? state.I_Percentage : state.R_Percentage - state.D_Percentage;
-  return d;
+  return state;
 };
 
 const cache = {};
