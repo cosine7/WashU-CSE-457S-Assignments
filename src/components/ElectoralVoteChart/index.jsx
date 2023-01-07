@@ -1,28 +1,75 @@
 import { useSelector } from 'react-redux';
-// import './index.scss';
-import { stack as Stack, scaleLinear } from 'd3';
+import './index.scss';
+import { scaleLinear } from 'd3';
+import scaleColor from '../../util/scaleColor';
 
-const stack = Stack().value((d, key) => d[key].Total_EV);
-const scale = scaleLinear().range([0, window.innerWidth]);
+const margin = 50;
+const groupWidth = window.innerWidth - margin * 2;
+const scale = scaleLinear().range([0, groupWidth]);
+
+const getIEVText = I_EV => {
+  if (!I_EV) {
+    return null;
+  }
+  return (
+    <text
+      className="independent"
+      x={0}
+    >
+      {I_EV}
+    </text>
+  );
+};
 
 export default function ElectoralVoteChart() {
   const data = useSelector(state => state.yearSelector.data);
-  stack.keys(Array(data.length).fill().map((e, i) => i));
-  const sum = data.reduce((previous, current) => previous + current.Total_EV, 0);
-  scale.domain([0, sum]);
-  console.log(stack([data]));
+
+  scale.domain([0, data.EV.sum]);
   return (
-    <svg height={50} width={window.innerWidth}>
-      {stack([data]).map(d => (
-        <rect
-          key={d[0].data}
-          x={scale(d[0][0])}
-          y={0}
-          height={50}
-          width={scale(d[0][1] - d[0][0])}
-          stroke="white"
-        />
-      ))}
+    <svg height={margin * 2 + 20} width={window.innerWidth}>
+      <g transform={`translate(${margin})`}>
+        <text
+          textAnchor="middle"
+          x={groupWidth / 2}
+        >
+          Electoral Vote (
+          {(data.EV.sum / 2).toFixed(0)}
+          {' '}
+          needs to win)
+        </text>
+        {getIEVText(data.EV.I)}
+        <text
+          className="democrat"
+          x={data.EV.I ? scale(data.EV.I) : 0}
+        >
+          {data.EV.D}
+        </text>
+        <text
+          className="republican"
+          x={groupWidth}
+        >
+          {data.EV.R}
+        </text>
+      </g>
+      <g transform={`translate(${margin},${margin})`}>
+        {data.map(d => (
+          <rect
+            key={d.abbreviation}
+            x={scale(d.position[0])}
+            y={0}
+            height={50}
+            width={scale(d.position[1] - d.position[0])}
+            stroke="white"
+            fill={scaleColor(d.party, d.victory)}
+          />
+        ))}
+      </g>
+      <rect
+        height={70}
+        width={2}
+        x={window.innerWidth / 2 - 1}
+        y={margin - 10}
+      />
     </svg>
   );
 }

@@ -40,6 +40,19 @@ const fetchDataByYear = async year => {
   }
   const data = await csv(`/data/election-results-${year}.csv`, converter);
   data.sort((a, b) => a.group === b.group ? a.victory - b.victory : a.group - b.group);
+
+  const EV = { I: 0, R: 0, D: 0 };
+
+  data.reduce((previous, current) => {
+    const rightBoundary = current.Total_EV + previous;
+    current.position = [previous, rightBoundary];
+    EV[current.party] += current.Total_EV;
+    return rightBoundary;
+  }, 0);
+
+  EV.sum = EV.I + EV.R + EV.D;
+  data.EV = EV;
+
   cache[year] = data;
   return data;
 };
