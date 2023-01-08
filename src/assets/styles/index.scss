@@ -1,27 +1,34 @@
-html, body {
-    margin: 0;
+:root {
+  font-size: 16px;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 }
 
 svg {
-    text {
-        dominant-baseline: hanging;
-    }
+  text {
+    dominant-baseline: hanging;
+  }
 }
 
-.republican{
-    fill: #de2d26;
-    color: #de2d26;
-    text-anchor: end;
+.republican {
+  fill: #de2d26;
+  color: #de2d26;
+  text-anchor: end;
 }
 
-.democrat{
-    fill: #3182bd;
-    text-anchor: start;
-    color: #3182bd;
+.democrat {
+  fill: #3182bd;
+  text-anchor: start;
+  color: #3182bd;
 }
 
-.independent{
-    fill: #45AD6A;
-    color: #45AD6A;
-    text-anchor: start;
+.independent {
+  fill: #45AD6A;
+  color: #45AD6A;
+  text-anchor: start;
 }

@@ -26,7 +26,7 @@ export default function ElectoralVoteChart() {
 
   scale.domain([0, data.EV.sum]);
   return (
-    <svg height={margin * 2 + 20} width={window.innerWidth}>
+    <svg height={margin * 2 + 20} width={window.innerWidth} className="ElectoralVoteChart">
       <g transform={`translate(${margin})`}>
         <text
           textAnchor="middle"
@@ -52,9 +52,10 @@ export default function ElectoralVoteChart() {
         </text>
       </g>
       <g transform={`translate(${margin},${margin})`}>
-        {data.map(d => (
+        {data.map((d, i) => (
           <rect
-            key={d.abbreviation}
+            // eslint-disable-next-line react/no-array-index-key
+            key={i}
             x={scale(d.position[0])}
             y={0}
             height={50}

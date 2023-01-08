@@ -1,4 +1,6 @@
 .year-selector {
+  user-select: none;
+
   circle, text {
     cursor: pointer;
   }
@@ -13,6 +15,14 @@
 
     &.democrat:hover {
       fill: #3399FF;
+    }
+
+    &.republican:active {
+      fill: #c55050;
+    }
+
+    &.democrat:active {
+      fill: #2878c8;
     }
   }
 }
