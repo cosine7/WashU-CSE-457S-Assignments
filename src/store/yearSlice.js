@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { csv } from 'd3';
-import winner from '../../public/data/yearwise-winner.csv';
+import winners from '../assets/data/yearwise-winner.csv';
 
-const { year: initialYear } = winner[winner.length - 1];
+const { year: initialYear } = winners[winners.length - 1];
 
 const converter = d => {
   const state = {

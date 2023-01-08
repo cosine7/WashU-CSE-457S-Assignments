@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import winners from '../../../public/data/yearwise-winner.csv';
+import winners from '../../assets/data/yearwise-winner.csv';
 import { setYearAndData } from '../../store/yearSlice';
 import './index.scss';
 
