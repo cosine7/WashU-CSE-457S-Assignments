@@ -27,7 +27,7 @@ export default function ElectoralVoteChart() {
   scale.domain([0, data.EV.sum]);
   return (
     <svg height={margin * 2 + 20} width={window.innerWidth} className="ElectoralVoteChart">
-      <g transform={`translate(${margin})`}>
+      <g transform={`translate(${margin},10)`}>
         <text
           textAnchor="middle"
           x={groupWidth / 2}
