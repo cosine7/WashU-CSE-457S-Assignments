@@ -63,10 +63,26 @@ const fetchDataByYear = async year => {
   votePercentage.D /= votePercentageSum;
   votePercentage.R /= votePercentageSum;
   data.votes = [
-    { party: 'independent', x: 0, percent: votePercentage.I },
-    { party: 'democrat', x: votePercentage.I, percent: votePercentage.D },
-    { party: 'republican', x: votePercentage.I + votePercentage.D, percent: votePercentage.R },
+    {
+      party: 'independent',
+      x: 0,
+      percent: votePercentage.I,
+      nominee: data[0].I_Nominee,
+    },
+    {
+      party: 'democrat',
+      x: votePercentage.I,
+      percent: votePercentage.D,
+      nominee: data[0].D_Nominee,
+    },
+    {
+      party: 'republican',
+      x: votePercentage.I + votePercentage.D,
+      percent: votePercentage.R,
+      nominee: data[0].R_Nominee,
+    },
   ];
+  console.log(data);
 
   cache[year] = data;
   return data;
