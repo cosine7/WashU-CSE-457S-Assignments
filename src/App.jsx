@@ -2,6 +2,7 @@ import YearSelector from './components/YearSelector';
 import ElectoralVoteChart from './components/ElectoralVoteChart';
 import VotePercentageChart from './components/VotePercentageChart';
 import Legend from './components/Legend';
+import TileChart from './components/TileChart';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Legend />
       <ElectoralVoteChart />
       <VotePercentageChart />
+      <TileChart />
     </>
   );
 }
