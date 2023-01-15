@@ -32,3 +32,28 @@ svg {
   color: #45AD6A;
   text-anchor: start;
 }
+
+.tooltip {
+  background-color: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .25);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  h3, p, ul, li {
+    margin: 0;
+  }
+
+  ul {
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ev {
+    color: gray;
+  }
+}

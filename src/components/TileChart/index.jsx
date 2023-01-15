@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import usStates from '../../assets/data/states.geo.json';
 import scaleColor from '../../util/scaleColor';
 import Tooltip from '../Tooltip';
+import classes from '../../util/classes';
 
 const margin = 50;
 const groupWidth = window.innerWidth * 0.7 - margin * 2;
@@ -22,9 +23,31 @@ const getTooltipContent = state => {
     return null;
   }
   return (
-    <div>
-      <p>{state.party}</p>
-      <p>{state.victory}</p>
+    <div className="tooltip">
+      <h3 className={classes[state.party]}>{state.state}</h3>
+      <p className="ev">
+        Electoral Votes:
+        {' '}
+        {state.Total_EV}
+      </p>
+      <ul>
+        {(state.I_Votes ? ['I', 'R', 'D'] : ['R', 'D']).map(key => (
+          <li
+            key={key}
+            className={classes[key]}
+          >
+            {state[`${key}_Nominee`]}
+            :
+            {' '}
+            {state[`${key}_Votes`]}
+            {' '}
+            (
+            {state[`${key}_Percentage`]}
+            %
+            )
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
@@ -32,10 +55,7 @@ const getTooltipContent = state => {
 console.log(usStates.features);
 export default function TileChart() {
   const states = useSelector(state => state.yearSelector.data.reduce((previous, current) => {
-    previous[current.abbreviation] = {
-      party: current.party,
-      victory: current.victory,
-    };
+    previous[current.abbreviation] = current;
     return previous;
   }, {}));
   console.log(states);
