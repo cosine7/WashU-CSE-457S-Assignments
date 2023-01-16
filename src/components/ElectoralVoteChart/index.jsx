@@ -1,11 +1,15 @@
 import { useSelector } from 'react-redux';
 import './index.scss';
-import { scaleLinear } from 'd3';
+import { scaleLinear, brushX, select } from 'd3';
+import { useEffect, useRef } from 'react';
 import scaleColor from '../../util/scaleColor';
 
 const margin = 50;
 const groupWidth = window.innerWidth - margin * 2;
 const scale = scaleLinear().range([0, groupWidth]);
+
+const brush = brushX()
+  .extent([[0, 0], [groupWidth, margin + 10]]);
 
 const getIEVText = I_EV => {
   if (!I_EV) {
@@ -23,6 +27,11 @@ const getIEVText = I_EV => {
 
 export default function ElectoralVoteChart() {
   const data = useSelector(state => state.yearSelector.data);
+  const brushGroup = useRef();
+
+  useEffect(() => {
+    select(brushGroup.current).call(brush);
+  }, []);
 
   scale.domain([0, data.EV.sum]);
   return (
@@ -62,6 +71,7 @@ export default function ElectoralVoteChart() {
             width={scale(d.position[1] - d.position[0])}
             stroke="white"
             fill={scaleColor(d.party, d.victory)}
+            className="animate"
           />
         ))}
       </g>
@@ -71,6 +81,7 @@ export default function ElectoralVoteChart() {
         x={window.innerWidth / 2 - 1}
         y={margin - 10}
       />
+      <g ref={brushGroup} transform={`translate(${margin},${margin - 5})`} />
     </svg>
   );
 }

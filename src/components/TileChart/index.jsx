@@ -69,6 +69,7 @@ export default function TileChart() {
               fill={getColor(states[state.properties.STUSPS])}
               stroke="white"
               cursor="pointer"
+              className="animate"
             />
           </Tooltip>
         ))}

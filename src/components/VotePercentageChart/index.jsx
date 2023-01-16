@@ -26,7 +26,7 @@ export default function VotePercentageChart() {
   const data = useSelector(state => state.yearSelector.data);
 
   return (
-    <svg height={margin * 4} width={window.innerWidth * 0.7}>
+    <svg height={margin * 4} width={window.innerWidth * 0.7} className="VotePercentageChart">
       <g transform={`translate(${margin},${margin})`}>
         <text
           x={groupWidth / 2}
@@ -64,7 +64,7 @@ export default function VotePercentageChart() {
             y={0}
             width={scale(vote.percent)}
             height={50}
-            className={vote.party}
+            className={`animate ${vote.party}`}
             stroke="white"
           />
         ))}

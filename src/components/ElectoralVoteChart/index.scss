@@ -1,14 +1,6 @@
 .ElectoralVoteChart {
-  rect {
-    transition: all 1s;
-  }
-
   text {
     user-select: none;
     font-size: 1.3rem;
   }
-}
-
-rect, path {
-  transition: all 1s;
 }
