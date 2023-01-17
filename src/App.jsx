@@ -3,6 +3,7 @@ import ElectoralVoteChart from './components/ElectoralVoteChart';
 import VotePercentageChart from './components/VotePercentageChart';
 import Legend from './components/Legend';
 import TileChart from './components/TileChart';
+import BrushSelection from './components/BrushSelection';
 
 export default function App() {
   return (
@@ -11,8 +12,13 @@ export default function App() {
       <YearSelector />
       <Legend />
       <ElectoralVoteChart />
-      <VotePercentageChart />
-      <TileChart />
+      <div className="layout-wrapper">
+        <div className="left">
+          <VotePercentageChart />
+          <TileChart />
+        </div>
+        <BrushSelection />
+      </div>
     </>
   );
 }

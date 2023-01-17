@@ -60,7 +60,7 @@ export default function TileChart() {
   }, {}));
   console.log(states);
   return (
-    <svg height={window.innerWidth * 0.5} width={window.innerWidth}>
+    <svg height={window.innerWidth * 0.5} width={window.innerWidth * 0.7}>
       <g transform={`translate(${margin})`}>
         {usStates.features.map(state => (
           <Tooltip key={state.id} content={getTooltipContent(states[state.properties.STUSPS])}>

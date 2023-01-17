@@ -61,3 +61,13 @@ svg {
 .animate {
   transition: all 1s;
 }
+
+.layout-wrapper {
+  display: flex;
+
+  .left {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+  }
+}
