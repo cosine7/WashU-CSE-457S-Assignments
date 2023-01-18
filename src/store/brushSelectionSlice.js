@@ -5,6 +5,13 @@ export const brushSelectionSlice = createSlice({
   initialState: {
     states: [],
   },
+  reducers: {
+    setStates: (state, action) => {
+      state.states = action.payload;
+    },
+  },
 });
+
+export const { setStates } = brushSelectionSlice.actions;
 
 export default brushSelectionSlice.reducer;

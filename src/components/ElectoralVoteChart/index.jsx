@@ -3,13 +3,12 @@ import './index.scss';
 import { scaleLinear, brushX, select } from 'd3';
 import { useEffect, useRef } from 'react';
 import scaleColor from '../../util/scaleColor';
+import { setStates } from '../../store/brushSelectionSlice';
+import store from '../../store';
 
 const margin = 50;
 const groupWidth = window.innerWidth - margin * 2;
 const scale = scaleLinear().range([0, groupWidth]);
-
-const brush = brushX()
-  .extent([[0, 0], [groupWidth, margin + 10]]);
 
 const getIEVText = I_EV => {
   if (!I_EV) {
@@ -30,6 +29,21 @@ export default function ElectoralVoteChart() {
   const brushGroup = useRef();
 
   useEffect(() => {
+    const brush = brushX()
+      .extent([[0, 0], [groupWidth, margin + 10]]);
+    brush.on('end', ({ selection }) => {
+      if (!selection) {
+        store.dispatch(setStates([]));
+        return;
+      }
+      const [left, right] = selection;
+      store.dispatch(setStates(data
+        .filter(e => {
+          const [l, r] = e.position;
+          return !(scale(r) < left || right < scale(l));
+        })
+        .map(e => e.state)));
+    });
     select(brushGroup.current).call(brush);
   }, []);
 

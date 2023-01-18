@@ -11,12 +11,12 @@ const getList = states => {
       </div>
     );
   }
-  return null;
+  return states.map(state => <p key={state}>{state}</p>);
 };
 
 export default function BrushSelection() {
   const states = useSelector(state => state.brushSelection.states);
-  console.log(states);
+
   return (
     <div className="brushSelectionWrapper">
       <h1>Brush Selection is:</h1>

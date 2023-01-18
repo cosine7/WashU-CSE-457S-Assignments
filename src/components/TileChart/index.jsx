@@ -52,13 +52,12 @@ const getTooltipContent = state => {
   );
 };
 
-console.log(usStates.features);
 export default function TileChart() {
   const states = useSelector(state => state.yearSelector.data.reduce((previous, current) => {
     previous[current.abbreviation] = current;
     return previous;
   }, {}));
-  console.log(states);
+
   return (
     <svg height={window.innerWidth * 0.5} width={window.innerWidth * 0.7}>
       <g transform={`translate(${margin})`}>
