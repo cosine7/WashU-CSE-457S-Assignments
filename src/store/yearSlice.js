@@ -82,7 +82,6 @@ const fetchDataByYear = async year => {
       nominee: data[0].R_Nominee,
     },
   ];
-  console.log(data);
 
   cache[year] = data;
   return data;

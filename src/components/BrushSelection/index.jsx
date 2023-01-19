@@ -11,7 +11,11 @@ const getList = states => {
       </div>
     );
   }
-  return states.map(state => <p key={state}>{state}</p>);
+  return (
+    <div className="list">
+      {states.map(state => <p key={state}>{state}</p>)}
+    </div>
+  );
 };
 
 export default function BrushSelection() {

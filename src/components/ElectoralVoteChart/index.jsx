@@ -1,14 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './index.scss';
-import { scaleLinear, brushX, select } from 'd3';
+import {
+  scaleLinear, brushX, select, brushSelection,
+} from 'd3';
 import { useEffect, useRef } from 'react';
 import scaleColor from '../../util/scaleColor';
 import { setStates } from '../../store/brushSelectionSlice';
-import store from '../../store';
 
 const margin = 50;
 const groupWidth = window.innerWidth - margin * 2;
 const scale = scaleLinear().range([0, groupWidth]);
+
+const brush = brushX()
+  .extent([[0, 0], [groupWidth, margin + 10]]);
 
 const getIEVText = I_EV => {
   if (!I_EV) {
@@ -27,25 +31,30 @@ const getIEVText = I_EV => {
 export default function ElectoralVoteChart() {
   const data = useSelector(state => state.yearSelector.data);
   const brushGroup = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const brush = brushX()
-      .extent([[0, 0], [groupWidth, margin + 10]]);
     brush.on('end', ({ selection }) => {
       if (!selection) {
-        store.dispatch(setStates([]));
+        dispatch(setStates([]));
         return;
       }
       const [left, right] = selection;
-      store.dispatch(setStates(data
+      dispatch(setStates(data
         .filter(e => {
           const [l, r] = e.position;
           return !(scale(r) < left || right < scale(l));
         })
         .map(e => e.state)));
     });
-    select(brushGroup.current).call(brush);
-  }, []);
+
+    if (brushSelection(brushGroup.current)) {
+      dispatch(setStates([]));
+      select(brushGroup.current).call(brush.clear);
+    } else {
+      select(brushGroup.current).call(brush);
+    }
+  }, [data]);
 
   scale.domain([0, data.EV.sum]);
   return (
