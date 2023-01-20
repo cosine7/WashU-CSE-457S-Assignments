@@ -1,0 +1,28 @@
+.year-selector {
+  user-select: none;
+
+  circle, text {
+    cursor: pointer;
+  }
+
+  circle {
+    stroke: black;
+    transition: all .3s;
+
+    &.republican:hover {
+      fill: #FF6666;
+    }
+
+    &.democrat:hover {
+      fill: #3399FF;
+    }
+
+    &.republican:active {
+      fill: #c55050;
+    }
+
+    &.democrat:active {
+      fill: #2878c8;
+    }
+  }
+}
