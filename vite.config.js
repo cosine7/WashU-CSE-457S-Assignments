@@ -10,4 +10,7 @@ export default defineConfig({
     react(),
     dsv(),
   ],
+  build: {
+    target: 'esnext',
+  },
 });
