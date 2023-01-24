@@ -1,4 +1,4 @@
-import { domain, range } from '../../util/scaleColor';
+import { domain, range } from '../../../util/scaleColor';
 
 const margin = 50;
 const groupWidth = window.innerWidth - margin * 2;

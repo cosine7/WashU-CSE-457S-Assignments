@@ -1,0 +1,27 @@
+.republican {
+  fill: #de2d26;
+  color: #de2d26;
+  text-anchor: end;
+}
+
+.democrat {
+  fill: #3182bd;
+  text-anchor: start;
+  color: #3182bd;
+}
+
+.independent {
+  fill: #45AD6A;
+  color: #45AD6A;
+  text-anchor: start;
+}
+
+.layout-wrapper {
+  display: flex;
+
+  .left {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -4,8 +4,8 @@ import {
   scaleLinear, brushX, select, brushSelection,
 } from 'd3';
 import { useEffect, useRef } from 'react';
-import scaleColor from '../../util/scaleColor';
-import { setStates } from '../../store/brushSelectionSlice';
+import scaleColor from '../../../util/scaleColor';
+import { setStates } from '../../../store/brushSelectionSlice';
 
 const margin = 50;
 const groupWidth = window.innerWidth - margin * 2;

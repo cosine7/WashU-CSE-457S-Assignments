@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import './index.scss';
-import { ReactComponent as Empty } from '../../assets/icons/noData.svg';
+import { ReactComponent as Empty } from '../../../assets/icons/noData.svg';
 
 const getList = states => {
   if (!states.length) {

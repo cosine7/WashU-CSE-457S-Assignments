@@ -2,10 +2,14 @@
   font-size: 16px;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html,
 body,
 #app {
-  margin: 0;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 }
 
@@ -13,24 +17,6 @@ svg {
   text {
     dominant-baseline: hanging;
   }
-}
-
-.republican {
-  fill: #de2d26;
-  color: #de2d26;
-  text-anchor: end;
-}
-
-.democrat {
-  fill: #3182bd;
-  text-anchor: start;
-  color: #3182bd;
-}
-
-.independent {
-  fill: #45AD6A;
-  color: #45AD6A;
-  text-anchor: start;
 }
 
 .tooltip {
@@ -62,12 +48,46 @@ svg {
   transition: all 1s;
 }
 
-.layout-wrapper {
+nav {
   display: flex;
+  justify-content: space-between;
+  padding: 0 6rem;
+  align-items: center;
+  border-bottom: 1px solid #DCDFE6;
 
-  .left {
-    width: 75%;
+  .nav-item-wrapper {
     display: flex;
-    flex-direction: column;
+    gap: 2rem;
   }
+
+  .nav-item {
+    display: flex;
+    gap: 0.5rem;
+    color: black;
+    text-decoration: none;
+    align-items: center;
+    padding: 1.2rem 0;
+    font-size: bold;
+    position: relative;
+
+    &-active {
+      color: #409EFF;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        background-color: #409EFF;
+      }
+    }
+  }
+}
+
+.title {
+  margin: 3rem 0 0 2rem;
+  font-size: 1.5rem;
+  color: #606266;
 }

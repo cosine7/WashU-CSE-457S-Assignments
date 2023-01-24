@@ -1,24 +1,33 @@
-import YearSelector from './components/YearSelector';
-import ElectoralVoteChart from './components/ElectoralVoteChart';
-import VotePercentageChart from './components/VotePercentageChart';
-import Legend from './components/Legend';
-import TileChart from './components/TileChart';
-import BrushSelection from './components/BrushSelection';
+import { NavLink, Outlet } from 'react-router-dom';
+import { BsMap } from 'react-icons/bs';
+import { BiAnalyse } from 'react-icons/bi';
+import { MdGesture } from 'react-icons/md';
+
+const items = [
+  { path: 'electoral-map', text: 'Electoral Map', icon: <BsMap /> },
+  { path: 'once-upon-a-time', text: 'Once Upon a Time', icon: <BiAnalyse /> },
+  { path: 'studios', text: 'Studios', icon: <MdGesture /> },
+];
 
 export default function App() {
   return (
     <>
-      <h1>US Presidential Elections from 1940 to 2016</h1>
-      <YearSelector />
-      <Legend />
-      <ElectoralVoteChart />
-      <div className="layout-wrapper">
-        <div className="left">
-          <VotePercentageChart />
-          <TileChart />
+      <nav>
+        <h1>WashU CSE457S Assignments</h1>
+        <div className="nav-item-wrapper">
+          {items.map(item => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) => `nav-item${isActive ? ' nav-item-active' : ''}`}
+            >
+              {item.icon}
+              {item.text}
+            </NavLink>
+          ))}
         </div>
-        <BrushSelection />
-      </div>
+      </nav>
+      <Outlet />
     </>
   );
 }
