@@ -38,7 +38,7 @@ const fetchDataByYear = async year => {
   if (cache[year]) {
     return cache[year];
   }
-  const data = await csv(`./data/election-results-${year}.csv`, converter);
+  const data = await csv(`./data/electoralMap/election-results-${year}.csv`, converter);
   data.sort((a, b) => a.group === b.group ? a.victory - b.victory : a.group - b.group);
 
   const EV = { I: 0, R: 0, D: 0 };

@@ -9,8 +9,14 @@
 
 html,
 body,
-#app {
+#root {
+  height: 100%;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
 }
 
 svg {
@@ -51,7 +57,7 @@ svg {
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 0 6rem;
+  padding: 0 3rem;
   align-items: center;
   border-bottom: 1px solid #DCDFE6;
 

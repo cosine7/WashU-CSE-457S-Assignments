@@ -1,6 +1,8 @@
 import { createHashRouter, Navigate } from 'react-router-dom';
 import App from '../App';
 import ElectoralMap from '../pages/ElectoralMap';
+import Studios from '../pages/Studios';
+import Studio3 from '../pages/Studios/Studio3';
 
 export default createHashRouter([{
   path: '/',
@@ -16,7 +18,45 @@ export default createHashRouter([{
     },
     {
       path: 'studios',
-      element: <h2>studios</h2>,
+      element: <Studios />,
+      children: [
+        {
+          path: '3',
+          element: <Studio3 />,
+        },
+        {
+          path: '4',
+          element: <h2>4</h2>,
+        },
+        {
+          path: '5',
+          element: <h2>5</h2>,
+        },
+        {
+          path: '6',
+          element: <h2>6</h2>,
+        },
+        {
+          path: '7',
+          element: <h2>7</h2>,
+        },
+        {
+          path: '8',
+          element: <h2>8</h2>,
+        },
+        {
+          path: '9',
+          element: <h2>9</h2>,
+        },
+        {
+          path: '10',
+          element: <h2>10</h2>,
+        },
+        {
+          path: '',
+          element: <Navigate to="./3" />,
+        },
+      ],
     },
     {
       path: '',

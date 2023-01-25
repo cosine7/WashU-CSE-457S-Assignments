@@ -8,7 +8,7 @@ import './index.scss';
 
 export default function ElectoralMap() {
   return (
-    <>
+    <main className="electoral-map-wrapper">
       <h1 className="title">US Presidential Elections from 1940 to 2016</h1>
       <YearSelector />
       <Legend />
@@ -20,6 +20,6 @@ export default function ElectoralMap() {
         </div>
         <BrushSelection />
       </div>
-    </>
+    </main>
   );
 }
