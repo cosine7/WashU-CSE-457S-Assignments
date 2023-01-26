@@ -3,6 +3,7 @@ import App from '../App';
 import ElectoralMap from '../pages/ElectoralMap';
 import Studios from '../pages/Studios';
 import Studio3 from '../pages/Studios/Studio3';
+import Studio4 from '../pages/Studios/Studio4';
 
 export default createHashRouter([{
   path: '/',
@@ -26,7 +27,7 @@ export default createHashRouter([{
         },
         {
           path: '4',
-          element: <h2>4</h2>,
+          element: <Studio4 />,
         },
         {
           path: '5',

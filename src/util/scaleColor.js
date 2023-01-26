@@ -7,9 +7,9 @@ const colorScale = scaleQuantile()
   .domain(domain)
   .range(range);
 
-export default function scaleColor(party, victory) {
+export default (party, victory) => {
   if (party === 'I') {
     return '#45AD6A';
   }
   return colorScale(victory);
-}
+};
