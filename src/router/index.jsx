@@ -4,6 +4,7 @@ import ElectoralMap from '../pages/ElectoralMap';
 import Studios from '../pages/Studios';
 import Studio3 from '../pages/Studios/Studio3';
 import Studio4 from '../pages/Studios/Studio4';
+import Studio5 from '../pages/Studios/Studio5';
 
 export default createHashRouter([{
   path: '/',
@@ -31,7 +32,7 @@ export default createHashRouter([{
         },
         {
           path: '5',
-          element: <h2>5</h2>,
+          element: <Studio5 />,
         },
         {
           path: '6',

@@ -25,5 +25,6 @@ module.exports = {
     'prefer-destructuring': ['error', { object: true, array: false }],
     'no-confusing-arrow': 'off',
     'react/forbid-prop-types': 'off',
+    'no-plusplus': 'off',
   },
 };

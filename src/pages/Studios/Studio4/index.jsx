@@ -91,7 +91,6 @@ export default function Studio4() {
                   fill={colorPalette(d.region)}
                 />
               ))}
-
             </g>
             <g
               ref={xAxisGroup}
