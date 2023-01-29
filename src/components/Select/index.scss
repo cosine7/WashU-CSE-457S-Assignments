@@ -4,7 +4,7 @@
   padding: 0.5rem 1rem;
   width: max-content;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 1rem;
   cursor: pointer;
@@ -12,9 +12,14 @@
   color: #73767a;
   position: relative;
   user-select: none;
+  box-sizing: border-box;
 
   &:hover {
     border-color: #b1b3b8;
+  }
+
+  &.open {
+    border-color: #409EFF;
   }
 
   .arrow {
@@ -22,20 +27,42 @@
     transform: rotate(0);
     transition: all .3s;
     
-    &.focus {
+    &.open {
       transform: rotate(180deg);
     }
   }
 
   ul {
+    box-sizing: border-box;
     position: absolute;
     width: 100%;
     left: 0;
-    top: 3rem;
     list-style: none;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    padding: 0.5rem;
+    color: black;
+    transform-origin: top;
+    transition: all .2s;
+    transform: scaleY(1);
+
+    li {
+      padding: 0.5rem 1rem;
+
+      &:hover {
+        color: #409EFF;
+      }
+    }
+
+    .selected {
+      border-radius: 8px;
+      background-color: #ECF5FF;
+      font-weight: bold;
+    }
   }
 
   .hidden {
-    display: none;
+    transform: scaleY(0);
   }
 }

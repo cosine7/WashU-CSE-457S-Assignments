@@ -33,7 +33,7 @@ const xAxisScale = axisBottom().scale(x);
 const yAxisScale = axisLeft().scale(y);
 
 const options = [
-  { text: 'Stores worldwide', value: 'stores' },
+  { text: 'Stores Worldwide', value: 'stores' },
   { text: 'Revenue in billion U.S. dollars', value: 'revenue' },
 ];
 
@@ -93,16 +93,15 @@ export default function CoffeeHouseChains() {
     <>
       <h3>Coffee House Chains</h3>
       <h4>A ranking of selected leading coffee house chains worldwide</h4>
-      <Select
-        options={options}
-        onChange={onGroupChange}
-        value={group}
-      />
-      {/* <select value={group} onChange={onGroupChange}>
-        <option value="stores">Stores worldwide</option>
-        <option value="revenue">Revenue in billion U.S. dollars</option>
-      </select> */}
-      <button type="button" onClick={onSort}>sort</button>
+      <div className="coffee-house-chains-operations">
+        <Select
+          options={options}
+          onChange={onGroupChange}
+          defaultOption={options[0]}
+          className="select"
+        />
+        <button type="button" onClick={onSort}>sort</button>
+      </div>
       <Pending
         data={data}
         render={d => (

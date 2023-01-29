@@ -3,3 +3,36 @@
     transition: all 1s;
   }
 }
+
+.coffee-house-chains-operations {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  .select {
+    width: 20rem;
+    height: 2.5rem;
+  }
+
+  button {
+    height: 2.5rem;
+    box-sizing: border-box;
+    padding: 0 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background-color: #409EFF;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover {
+      background-color: #79bbff;
+    }
+
+    &:active {
+      background-color: #337ecc;
+    }
+  }
+}
