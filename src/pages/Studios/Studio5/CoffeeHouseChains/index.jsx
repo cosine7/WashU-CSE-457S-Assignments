@@ -8,6 +8,7 @@ import {
   select,
 } from 'd3';
 import { useRef, useEffect, useState } from 'react';
+import Select from '../../../../components/Select';
 import Pending from '../../Pending';
 import './index.scss';
 
@@ -31,6 +32,11 @@ const y = scaleLinear()
 const xAxisScale = axisBottom().scale(x);
 const yAxisScale = axisLeft().scale(y);
 
+const options = [
+  { text: 'Stores worldwide', value: 'stores' },
+  { text: 'Revenue in billion U.S. dollars', value: 'revenue' },
+];
+
 export default function CoffeeHouseChains() {
   const [data, setData] = useState();
   const [updateAxis, setUpdateAxis] = useState();
@@ -39,27 +45,26 @@ export default function CoffeeHouseChains() {
   const [group, setGroup] = useState('stores');
   const [ascending, setAscending] = useState(false);
 
+  const update = ($data, $group, $ascending) => {
+    const sortedData = [...$data].sort(
+      $ascending
+        ? (a, b) => a[$group] - b[$group]
+        : (a, b) => b[$group] - a[$group],
+    );
+    x.domain(sortedData.map(d => d.company));
+    y.domain([0, max($data, d => d[$group])]);
+
+    setUpdateAxis([]);
+  };
+
   useEffect(() => {
     (async () => {
       const d = await csv('./data/studio5/coffee-house-chains.csv', converter);
+      update(d, group, ascending);
       setData(d);
+      setUpdateAxis([]);
     })();
   }, []);
-
-  useEffect(() => {
-    if (!data) {
-      return;
-    }
-    const sortedData = [...data].sort(
-      ascending
-        ? (a, b) => a[group] - b[group]
-        : (a, b) => b[group] - a[group],
-    );
-    x.domain(sortedData.map(d => d.company));
-    y.domain([0, max(data, d => d[group])]);
-
-    setUpdateAxis([]);
-  }, [data, ascending, group]);
 
   useEffect(() => {
     if (!updateAxis) {
@@ -72,22 +77,31 @@ export default function CoffeeHouseChains() {
     select(yAxisGroup.current).call(yAxisScale);
   }, [updateAxis]);
 
-  const onGroupChange = e => {
-    setGroup(e.target.value);
+  const onGroupChange = value => {
+    update(data, value, ascending);
+    setGroup(value);
   };
 
   const onSort = () => {
-    setAscending(previous => !previous);
+    setAscending(previous => {
+      update(data, group, !previous);
+      return !previous;
+    });
   };
 
   return (
     <>
       <h3>Coffee House Chains</h3>
       <h4>A ranking of selected leading coffee house chains worldwide</h4>
-      <select value={group} onChange={onGroupChange}>
+      <Select
+        options={options}
+        onChange={onGroupChange}
+        value={group}
+      />
+      {/* <select value={group} onChange={onGroupChange}>
         <option value="stores">Stores worldwide</option>
         <option value="revenue">Revenue in billion U.S. dollars</option>
-      </select>
+      </select> */}
       <button type="button" onClick={onSort}>sort</button>
       <Pending
         data={data}
