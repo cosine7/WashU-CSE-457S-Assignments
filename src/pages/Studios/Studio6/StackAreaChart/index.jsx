@@ -1,23 +1,21 @@
 import {
   useState,
   useRef,
-  useMemo,
   useLayoutEffect,
+  useReducer,
 } from 'react';
 import {
-  schemeSet3,
   scaleTime,
   extent,
   scaleLinear,
-  stack,
   area,
   max,
   axisBottom,
   axisLeft,
-  scaleOrdinal,
   select,
 } from 'd3';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 const width = 800;
 const height = 400;
@@ -39,52 +37,77 @@ const singleArea = area()
 const xAxis = axisBottom().scale(x);
 const yAxis = axisLeft().scale(y);
 
-export default function StackAreaChart({ layers }) {
-  const keys = useMemo(
-    () => Object.keys(layers[0]).filter(d => d !== 'Year'),
-    [layers],
-  );
-  const colorScale = useMemo(
-    () => scaleOrdinal().domain(keys).range(schemeSet3),
-    [keys],
-  );
-  const stackedLayers = useMemo(
-    () => stack().keys(keys)(layers),
-    [keys, layers],
-  );
-  const [label, setLabel] = useState();
-  const [filter, setFilter] = useState('');
-  const [visibleData, setVisibleData] = useState(stackedLayers);
+let yDomain;
 
+const getYDomain = data => [0, max(data, d => max(d, e => e[1]))];
+
+const createInitialState = data => {
+  const { layers, stackedLayers } = data;
+  x.domain(extent(layers, d => d.Year));
+  yDomain = getYDomain(stackedLayers);
+  y.domain(yDomain);
+
+  return {
+    filter: '',
+    data: stackedLayers,
+  };
+};
+
+const reducer = (state, action) => {
+  const newState = { ...state };
+
+  if (action.type === 'switchFilter') {
+    if (state.filter === action.key) {
+      newState.filter = '';
+      newState.data = action.stackedLayers;
+      y.domain(yDomain);
+    } else {
+      const filtered = action.stackedLayers.filter(d => d.key === action.key);
+      newState.filter = action.key;
+      newState.data = filtered;
+      y.domain(getYDomain(filtered));
+    }
+    select(action.yAxisGroup).call(yAxis);
+    return newState;
+  }
+  throw Error(`Unknown action: ${action.type}`);
+};
+
+export default function StackAreaChart({ layers, colorScale, stackedLayers }) {
+  const domain = useSelector(state => state.studio6.domain);
+  const [label, setLabel] = useState();
+  const [{ filter, data }, dispatch] = useReducer(
+    reducer,
+    {
+      layers,
+      stackedLayers,
+    },
+    createInitialState,
+  );
+  const [, forceUpdate] = useState();
   const xAxisGroup = useRef();
   const yAxisGroup = useRef();
-
-  const xDomain = useMemo(
-    () => extent(layers, d => d.Year),
-    [layers],
-  );
-  const yDomain = useMemo(
-    () => [0, max(visibleData, d => max(d, e => e[1]))],
-    [visibleData],
-  );
-  x.domain(xDomain);
-  y.domain(yDomain);
 
   useLayoutEffect(() => {
     select(xAxisGroup.current).call(xAxis);
     select(yAxisGroup.current).call(yAxis);
   }, []);
 
-  const onClick = key => () => {
-    if (filter === key) {
-      setFilter('');
-      setVisibleData(stackedLayers);
-    } else {
-      const filtered = stackedLayers.filter(d => d.key === key);
-      setFilter(key);
-      setVisibleData(filtered);
+  useLayoutEffect(() => {
+    if (domain) {
+      x.domain(domain);
+      select(xAxisGroup.current).call(xAxis);
+      forceUpdate([]);
     }
-    select(yAxisGroup.current).call(yAxis);
+  }, [domain]);
+
+  const onClick = key => () => {
+    dispatch({
+      type: 'switchFilter',
+      key,
+      yAxisGroup: yAxisGroup.current,
+      stackedLayers,
+    });
   };
 
   return (
@@ -103,7 +126,7 @@ export default function StackAreaChart({ layers }) {
             <rect width={width - margin} height={height - margin} />
           </clipPath>
         </defs>
-        {visibleData.map(layer => (
+        {data.map(layer => (
           <path
             key={layer.key}
             d={filter ? singleArea(layer) : stackedArea(layer)}
@@ -122,4 +145,6 @@ export default function StackAreaChart({ layers }) {
 
 StackAreaChart.propTypes = {
   layers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  stackedLayers: PropTypes.arrayOf(PropTypes.array).isRequired,
+  colorScale: PropTypes.func.isRequired,
 };

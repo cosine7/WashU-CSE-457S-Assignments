@@ -19,7 +19,7 @@ const getList = states => {
 };
 
 export default function BrushSelection() {
-  const states = useSelector(state => state.brushSelection.states);
+  const states = useSelector(state => state.electoralMap.states);
 
   return (
     <div className="brushSelectionWrapper">

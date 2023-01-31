@@ -23,7 +23,7 @@ const scaleTextY = {
 };
 
 export default function VotePercentageChart() {
-  const data = useSelector(state => state.yearSelector.data);
+  const data = useSelector(state => state.electoralMap.data);
 
   return (
     <svg height={margin * 4} width={window.innerWidth * 0.7} className="VotePercentageChart">

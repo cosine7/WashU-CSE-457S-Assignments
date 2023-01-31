@@ -5,7 +5,7 @@ import {
 } from 'd3';
 import { useEffect, useRef } from 'react';
 import scaleColor from '../../../util/scaleColor';
-import { setStates } from '../../../store/brushSelectionSlice';
+import { setStates } from '../../../store/electoralMapSlice';
 
 const margin = 50;
 const groupWidth = window.innerWidth - margin * 2;
@@ -29,7 +29,7 @@ const getIEVText = I_EV => {
 };
 
 export default function ElectoralVoteChart() {
-  const data = useSelector(state => state.yearSelector.data);
+  const data = useSelector(state => state.electoralMap.data);
   const brushGroup = useRef();
   const dispatch = useDispatch();
 

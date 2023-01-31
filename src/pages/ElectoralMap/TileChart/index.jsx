@@ -53,7 +53,7 @@ const getTooltipContent = state => {
 };
 
 export default function TileChart() {
-  const states = useSelector(state => state.yearSelector.data.reduce((previous, current) => {
+  const states = useSelector(state => state.electoralMap.data.reduce((previous, current) => {
     previous[current.abbreviation] = current;
     return previous;
   }, {}));

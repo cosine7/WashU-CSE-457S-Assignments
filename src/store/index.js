@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import yearReducer from './yearSlice';
-import brushReducer from './brushSelectionSlice';
+import electoralMapReducer from './electoralMapSlice';
+import studio6Reducer from './studio6Slice';
 
 export default configureStore({
   reducer: {
-    yearSelector: yearReducer,
-    brushSelection: brushReducer,
+    electoralMap: electoralMapReducer,
+    studio6: studio6Reducer,
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });

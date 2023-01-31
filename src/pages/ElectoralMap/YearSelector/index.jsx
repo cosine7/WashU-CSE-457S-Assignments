@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import winners from '../../../assets/data/yearwise-winner.csv';
-import { setYearAndData } from '../../../store/yearSlice';
+import { setYearAndData } from '../../../store/electoralMapSlice';
 import './index.scss';
 
 const margin = 50;
@@ -9,7 +9,7 @@ const width = window.innerWidth - margin * 2;
 const base = width / (winners.length - 1);
 
 export default function YearSelector() {
-  const year = useSelector(state => state.yearSelector.year);
+  const year = useSelector(state => state.electoralMap.year);
   const dispatch = useDispatch();
 
   const onYearChange = newYear => () => {

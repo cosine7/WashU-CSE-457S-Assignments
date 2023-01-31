@@ -95,15 +95,22 @@ export const setYearAndData = createAsyncThunk(
   },
 );
 
-export const yearSlice = createSlice({
-  name: 'yearSelector',
+export const electoralMapSlice = createSlice({
+  name: 'electoralMap',
   initialState: {
     year: initialYear,
     data: await fetchDataByYear(initialYear),
+    states: [],
+  },
+  reducers: {
+    setStates: (state, action) => {
+      state.states = action.payload;
+    },
   },
   extraReducers: builder => {
-    builder.addCase(setYearAndData.fulfilled, (state, action) => ({ ...action.payload }));
+    builder.addCase(setYearAndData.fulfilled, (state, action) => ({ ...state, ...action.payload }));
   },
 });
+export const { setStates } = electoralMapSlice.actions;
 
-export default yearSlice.reducer;
+export default electoralMapSlice.reducer;
