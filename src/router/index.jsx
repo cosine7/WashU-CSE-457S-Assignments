@@ -6,6 +6,7 @@ import Studio3 from '../pages/Studios/Studio3';
 import Studio4 from '../pages/Studios/Studio4';
 import Studio5 from '../pages/Studios/Studio5';
 import Studio6 from '../pages/Studios/Studio6';
+import Studio7 from '../pages/Studios/Studio7';
 
 export default createHashRouter([{
   path: '/',
@@ -41,7 +42,7 @@ export default createHashRouter([{
         },
         {
           path: '7',
-          element: <h2>7</h2>,
+          element: <Studio7 />,
         },
         {
           path: '8',
