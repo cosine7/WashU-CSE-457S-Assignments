@@ -12,7 +12,6 @@ export default function Select({
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(defaultOption);
   const wrapper = useRef();
-  const ul = useRef();
 
   const onOptionClick = option => () => {
     setSelected(option);
@@ -55,7 +54,6 @@ export default function Select({
       <ul
         className={open ? '' : 'hidden'}
         style={{ top: getTop() }}
-        ref={ul}
       >
         {options.map(option => (
           <li

@@ -1,0 +1,10 @@
+.studio6 {
+  .stack-chart-path {
+    cursor: pointer;
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
