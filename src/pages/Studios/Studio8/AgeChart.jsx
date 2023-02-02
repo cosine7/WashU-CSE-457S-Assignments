@@ -36,6 +36,7 @@ export default function AgeChart({ width, data }) {
       votesPerAge.push(sum);
     }
     y.domain(extent(votesPerAge));
+    x.range([0, width - padding]);
     return votesPerAge;
   }, [data]);
 
@@ -44,7 +45,6 @@ export default function AgeChart({ width, data }) {
 
   useLayoutEffect(() => {
     select(xAxisGroup.current).transition().duration(750).call(xAxis);
-    x.range([0, width - padding]);
   }, []);
 
   useLayoutEffect(() => {

@@ -31,6 +31,7 @@ export default function PriorityChart({ width, data, meta }) {
         data.reduce((previous, current) => previous + current.priorities[i], 0),
       );
     }
+    x.rangeRound([0, width - padding]);
     y.domain(extent([0, max(votesPerPriority)]));
     return votesPerPriority;
   }, [data]);
@@ -39,7 +40,6 @@ export default function PriorityChart({ width, data, meta }) {
   const yAxisGroup = useRef();
 
   useLayoutEffect(() => {
-    x.rangeRound([0, width - padding]);
     select(xAxisGroup.current)
       .transition()
       .duration(750)
