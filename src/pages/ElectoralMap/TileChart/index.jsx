@@ -2,7 +2,7 @@ import { geoPath, geoAlbersUsa } from 'd3';
 import { useSelector } from 'react-redux';
 import usStates from '../../../assets/data/states.geo.json';
 import scaleColor from '../../../util/scaleColor';
-import Tooltip from '../Tooltip';
+import Tooltip from '../../../components/Tooltip';
 import classes from '../../../util/classes';
 
 const margin = 50;

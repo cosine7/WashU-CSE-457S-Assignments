@@ -1,0 +1,51 @@
+borough,name,count
+Bronx,BELLA,128
+Bronx,BUDDY,58
+Bronx,COCO,94
+Bronx,LOLA,81
+Bronx,LUCKY,85
+Bronx,MAX,122
+Bronx,OREO,65
+Bronx,PRINCE,57
+Bronx,PRINCESS,113
+Bronx,ROCKY,117
+Brooklyn,BELLA,232
+Brooklyn,CHARLIE,168
+Brooklyn,COCO,140
+Brooklyn,DAISY,125
+Brooklyn,LOLA,143
+Brooklyn,LUCKY,161
+Brooklyn,LUCY,129
+Brooklyn,MAX,219
+Brooklyn,PRINCESS,131
+Brooklyn,ROCKY,167
+Manhattan,BAILEY,153
+Manhattan,BELLA,239
+Manhattan,CHARLIE,285
+Manhattan,COCO,217
+Manhattan,DAISY,164
+Manhattan,LOLA,261
+Manhattan,LUCY,285
+Manhattan,MAX,248
+Manhattan,OLIVER,171
+Manhattan,TEDDY,152
+Queens,BELLA,230
+Queens,BUDDY,125
+Queens,CHARLIE,139
+Queens,COCO,190
+Queens,DAISY,117
+Queens,LOLA,109
+Queens,LUCKY,162
+Queens,MAX,239
+Queens,PRINCESS,122
+Queens,ROCKY,205
+Staten Island,BAILEY,72
+Staten Island,BELLA,142
+Staten Island,BUDDY,102
+Staten Island,CHARLIE,65
+Staten Island,COCO,76
+Staten Island,LOLA,72
+Staten Island,LUCKY,60
+Staten Island,MAX,105
+Staten Island,MOLLY,71
+Staten Island,ROCKY,106

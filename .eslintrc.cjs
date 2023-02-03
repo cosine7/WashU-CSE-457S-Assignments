@@ -31,5 +31,6 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'no-mixed-operators': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'no-return-assign': 'off',
   },
 };
