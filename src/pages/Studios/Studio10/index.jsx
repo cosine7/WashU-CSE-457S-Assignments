@@ -31,12 +31,12 @@ export default function Studio10() {
       data.sort((a, b) => a.station_id - b.station_id);
       meta.sort((a, b) => a.station_id - b.station_id);
 
-      const map = Map('chicago-map').setView([41.8781, -87.6298], 12);
+      const map = Map('chicago-map').setView(mapPosition, 12);
 
       tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
-      console.log(ctaLines.features);
+
       geoJson(ctaLines.features, {
         style: feature => ({
           color: `#${feature.properties.route_color}`,
