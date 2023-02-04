@@ -2,6 +2,7 @@ import { createHashRouter, Navigate } from 'react-router-dom';
 import App from '../App';
 import ElectoralMap from '../pages/ElectoralMap';
 import Studios from '../pages/Studios';
+import Studio10 from '../pages/Studios/Studio10';
 import Studio3 from '../pages/Studios/Studio3';
 import Studio4 from '../pages/Studios/Studio4';
 import Studio5 from '../pages/Studios/Studio5';
@@ -56,7 +57,7 @@ export default createHashRouter([{
         },
         {
           path: '10',
-          element: <h2>10</h2>,
+          element: <Studio10 />,
         },
         {
           path: '',
