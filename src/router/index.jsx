@@ -1,6 +1,7 @@
 import { createHashRouter, Navigate } from 'react-router-dom';
 import App from '../App';
 import ElectoralMap from '../pages/ElectoralMap';
+import OnceUpOnATime from '../pages/OnceUpOnATime';
 import Studios from '../pages/Studios';
 import Studio10 from '../pages/Studios/Studio10';
 import Studio3 from '../pages/Studios/Studio3';
@@ -21,7 +22,7 @@ export default createHashRouter([{
     },
     {
       path: 'once-upon-a-time',
-      element: <h2>once time</h2>,
+      element: <OnceUpOnATime />,
     },
     {
       path: 'studios',

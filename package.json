@@ -20,7 +20,9 @@
     "react-router-dom": "^6.7.0",
     "react-transition-group": "^4.4.5",
     "redux-thunk": "^2.4.2",
-    "topojson-client": "^3.1.0"
+    "topojson-client": "^3.1.0",
+    "wink-eng-lite-web-model": "^1.4.3",
+    "wink-nlp": "^1.13.0"
   },
   "devDependencies": {
     "@rollup/plugin-dsv": "^3.0.1",

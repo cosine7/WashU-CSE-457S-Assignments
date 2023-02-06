@@ -8,6 +8,7 @@ export default function Select({
   onChange,
   defaultOption,
   className,
+  title,
 }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(defaultOption);
@@ -49,7 +50,8 @@ export default function Select({
       onClick={() => setOpen(previous => !previous)}
       ref={wrapper}
     >
-      {selected.text}
+      {title && <p>{title}</p>}
+      <span>{selected.text}</span>
       <IoIosArrowDown className={`arrow${open ? ' open' : ''}`} />
       <ul
         className={open ? '' : 'hidden'}
@@ -74,8 +76,10 @@ Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
+  title: PropTypes.string,
 };
 
 Select.defaultProps = {
   className: '',
+  title: '',
 };
