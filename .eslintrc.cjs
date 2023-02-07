@@ -32,5 +32,6 @@ module.exports = {
     'no-mixed-operators': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-return-assign': 'off',
+    'no-unused-expressions': 'off',
   },
 };

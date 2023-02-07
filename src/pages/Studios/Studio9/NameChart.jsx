@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import { useEffect, useMemo, useState } from 'react';
+import {
+  Fragment, useEffect, useMemo, useState,
+} from 'react';
 import { group, scaleLinear, extent } from 'd3';
 import Tooltip from '../../../components/Tooltip';
 
@@ -26,7 +28,7 @@ export default function NameChart({ data, width }) {
       {param && namesGroupByBorough.map(([borough, dataGroup], j) => (
         <g key={borough} transform={`translate(0,${j * 100})`}>
           {dataGroup.map((d, i) => (
-            <>
+            <Fragment key={d.name}>
               <text
                 dominantBaseline="central"
                 fill="#8B716A"
@@ -36,7 +38,6 @@ export default function NameChart({ data, width }) {
                 {borough}
               </text>
               <Tooltip
-                key={d.name}
                 content={(
                   <div className="tooltip studio9-tooltip">
                     <p>
@@ -57,7 +58,7 @@ export default function NameChart({ data, width }) {
                   {d.name}
                 </text>
               </Tooltip>
-            </>
+            </Fragment>
           ))}
         </g>
       ))}

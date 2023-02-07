@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from '../../components/Select';
 import { setSelectedFairytales } from '../../store/onceUpOnATimeSlice';
 import './index.scss';
+import RadialCluster from './RadialCluster';
 
 export default function OnceUpOnATime() {
   const options = useSelector(state => {
@@ -18,6 +19,7 @@ export default function OnceUpOnATime() {
     return items;
   });
 
+  const selected = useSelector(state => state.onceUpOnATime.selected);
   const dispatch = useDispatch();
 
   const onChange = value => {
@@ -33,6 +35,7 @@ export default function OnceUpOnATime() {
         onChange={onChange}
         title="Fairy Tales"
       />
+      {selected === 'ALL' ? <RadialCluster /> : null}
     </main>
   );
 }
