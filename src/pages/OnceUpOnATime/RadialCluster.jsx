@@ -1,9 +1,4 @@
-import {
-  useCallback,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import {
   linkRadial,
@@ -12,53 +7,13 @@ import {
   scaleOrdinal,
   schemeSet3,
 } from 'd3';
-import PropTypes from 'prop-types';
+import Path from './Path';
 
 const width = window.innerWidth;
 const pathGenerator = linkRadial().angle(d => d.x).radius(d => d.y);
 const radialCluster = cluster()
   .size([Math.PI * 2, width / 2 - 100])
   .separation((a, b) => (a.parent === b.parent ? 1 : 2));
-
-function Path({ d, begin, stroke }) {
-  const path = useRef();
-  const [length, setLength] = useState();
-
-  useLayoutEffect(() => {
-    const len = path.current.getTotalLength();
-    setLength(len);
-  }, []);
-
-  return (
-    <path
-      ref={path}
-      d={d}
-      fill="transparent"
-      stroke={stroke}
-      strokeDasharray={length}
-      strokeDashoffset={length}
-    >
-      {length && (
-        <animate
-          attributeName="stroke-dashoffset"
-          to={0}
-          begin={begin}
-          dur="800ms"
-          fill="freeze"
-          calcMode="spline"
-          keyTimes="0; 0.25; 0.5; 0.65; 1"
-          keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1"
-        />
-      )}
-    </path>
-  );
-}
-
-Path.propTypes = {
-  d: PropTypes.string.isRequired,
-  begin: PropTypes.string.isRequired,
-  stroke: PropTypes.string.isRequired,
-};
 
 export default function RadialCluster() {
   const { data, colorScale } = useSelector(state => {
