@@ -10,12 +10,12 @@ import WordCloud from './WordCloud';
 export default function OnceUpOnATime() {
   const options = useSelector(state => {
     const items = [];
-
-    Object.keys(state.onceUpOnATime.fairytales).forEach(value => {
+    const { fairytales, selected } = state.onceUpOnATime;
+    Object.keys(fairytales).forEach(value => {
       const item = { value, text: value };
       items.push(item);
 
-      if (value === 'ALL') {
+      if (value === selected) {
         items.default = item;
       }
     });
