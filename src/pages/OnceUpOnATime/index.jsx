@@ -4,6 +4,8 @@ import { setSelectedFairytales } from '../../store/onceUpOnATimeSlice';
 import './index.scss';
 import RadialCluster from './RadialCluster';
 import HorizontalTree from './HorizontalTree';
+import PieChart from './PieChart';
+import WordCloud from './WordCloud';
 
 export default function OnceUpOnATime() {
   const options = useSelector(state => {
@@ -36,7 +38,13 @@ export default function OnceUpOnATime() {
         onChange={onChange}
         title="Fairy Tales"
       />
-      {selected === 'ALL' ? <RadialCluster /> : <HorizontalTree key={selected} />}
+      {selected === 'ALL' ? <RadialCluster /> : (
+        <svg height={window.innerWidth} width={window.innerWidth} key={selected}>
+          <HorizontalTree />
+          <PieChart />
+          <WordCloud />
+        </svg>
+      )}
     </main>
   );
 }

@@ -1,13 +1,21 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    y: 20;
+  }
+  100% {
+    opacity: 1;
+    y: 0;
+  }
+}
+
 .once-up-on-a-time {
   .select {
     margin: 1rem auto;
     height: 2.5rem;
     width: 40rem;
-  }
-
-  .radial-cluster {
-    // path {
-    //   transition: all .8s;
-    // }
+    position: sticky;
+    top: 1rem;
+    background-color: white;
   }
 }

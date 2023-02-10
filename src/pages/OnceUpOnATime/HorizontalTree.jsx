@@ -14,7 +14,7 @@ const colorScale = scaleOrdinal()
   .domain(['ADJ', 'ADP', 'ADV', 'AUX', 'CCONJ', 'DET', 'INTJ', 'NOUN', 'NUM', 'PART', 'PRON', 'PROPN', 'PUNCT', 'SCONJ', 'SYM', 'VERB', 'X', 'SPACE']);
 
 const width = window.innerWidth;
-const offset = width / 4;
+export const offset = width / 4;
 
 const hTree = tree()
   .size([offset * 2, width - offset])
@@ -81,7 +81,7 @@ export default function HorizontalTree() {
   }, (oldVal, newVal) => oldVal.selected === newVal.selected);
 
   return (
-    <svg height={window.innerWidth / 2} width={width}>
+    <g>
       <g transform={`translate(${offset / 2})`}>
         {data.links().map(link => (
           <Path
@@ -136,6 +136,6 @@ export default function HorizontalTree() {
           </Fragment>
         ))}
       </g>
-    </svg>
+    </g>
   );
 }
